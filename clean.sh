@@ -1,8 +1,8 @@
 #!/bin/sh
 
-echo "CLEANING CONTAINERS"
+echo "CLEANING CONTAINERS..."
 echo "---------"
 docker-compose down --rmi all -v
-echo
 
-echo 'done.'
+echo "---------"
+echo 'DONE.'
