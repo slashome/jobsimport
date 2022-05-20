@@ -2,9 +2,9 @@
 
 class JobsLister
 {
-    private $db;
+    private PDO $db;
 
-    public function __construct($host, $username, $password, $databaseName)
+    public function __construct(string $host, string $username, string $password, string $databaseName)
     {
         /* connect to DB */
         try {
@@ -14,9 +14,10 @@ class JobsLister
         }
     }
 
-    public function listJobs()
+    public function listJobs(): array
     {
         $jobs = $this->db->query('SELECT id, reference, title, description, url, company_name, publication FROM job')->fetchAll(PDO::FETCH_ASSOC);
+
         return $jobs;
     }
 }

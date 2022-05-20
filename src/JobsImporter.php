@@ -2,11 +2,11 @@
 
 class JobsImporter
 {
-    private $db;
+    private PDO $db;
 
-    private $file;
+    private string $file;
 
-    public function __construct($host, $username, $password, $databaseName, $file)
+    public function __construct(string $host, string $username, string $password, string $databaseName, string $file)
     {
         $this->file = $file;
         
@@ -18,7 +18,7 @@ class JobsImporter
         }
     }
 
-    public function importJobs()
+    public function importJobs(): int
     {
         /* remove existing items */
         $this->db->exec('DELETE FROM job');
