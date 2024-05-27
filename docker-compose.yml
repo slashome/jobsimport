@@ -3,19 +3,21 @@ version: "3.7"
 services:
   app:
     build: ./
-    #ports:
-    #  - 8080:80
     volumes:
       - ./src/:/var/app/src
       - ./resources/:/var/app/resources
     depends_on:
       - mariadb
+    env_file:
+      - .env
 
   mariadb:
     image: mariadb:10.4
     restart: always
+    ports:
+      - 3306:3306
     volumes:
-      - ./init.sql:/data/application/init.sql
+      - ./database/init.sql:/data/application/init.sql
     environment:
       MYSQL_ROOT_PASSWORD: root
     command: "mysqld --init-file /data/application/init.sql"
